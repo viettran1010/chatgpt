@@ -2,8 +2,9 @@
   "name": "server",
   "version": "1.0.0",
   "description": "",
+  "type": "module",
   "scripts": {
-    "server": "nodemon --exec 'ts-node' server.ts"
+    "server": "nodemon server"
   },
   "keywords": [],
   "author": "",

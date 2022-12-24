@@ -5,7 +5,7 @@ import { Configuration, OpenAIApi } from "openai";
 
 dotenv.config();
 
-console.log("====process.env.OPENAI_API_KEY: ", process.env.OPENAI_API_KEY);
+console.log("process.env.OPENAI_API_KEY: ", process.env.OPENAI_API_KEY);
 
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
@@ -35,13 +35,11 @@ app.post("/api/chat", async (req, res) => {
       presence_penalty: 0,
     });
 
-    console.log("====response.data: ", response.data);
-
     res.status(200).send({
       bot: response.data.choices[0].text,
     });
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     res.status(500).send({ error });
   }
 });
