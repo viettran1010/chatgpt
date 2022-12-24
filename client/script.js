@@ -6,13 +6,13 @@ const bot =
 const user =
   "https://raw.githubusercontent.com/abhisheknaiidu/abhisheknaiidu/master/code.gif";
 
-const form = document.querySelector("form")!;
+const form = document.querySelector("form");
 
-const chatContainer = document.querySelector("#chat_container")!;
+const chatContainer = document.querySelector("#chat_container");
 
-let loadInterval: number;
+let loadInterval;
 
-function loader(element: any) {
+function loader(element) {
   element.textContent = "";
   loadInterval = setInterval(() => {
     element.textContent += ".";
@@ -23,7 +23,7 @@ function loader(element: any) {
   }, 300);
 }
 
-function typeText(element: any, text: any) {
+function typeText(element, text) {
   let index = 0;
   const interval = setInterval(() => {
     if (index < text.length) {
@@ -43,7 +43,7 @@ function generateUniqueId() {
   return `id-${timestamp}-${hexadecimalString}`;
 }
 
-function chatStripe(isAi: boolean, value: string, uniqueId: string) {
+function chatStripe(isAi, value, uniqueId) {
   return `
       <div class="wrapper ${isAi && "ai"}" >
         <div class="chat">
@@ -59,14 +59,14 @@ function chatStripe(isAi: boolean, value: string, uniqueId: string) {
     `;
 }
 
-const handleSubmit = async (e: any) => {
+const handleSubmit = async (e) => {
   e.preventDefault();
 
-  const data = new FormData(form!);
+  const data = new FormData(form);
 
   chatContainer.innerHTML += chatStripe(
     false,
-    data.get("prompt")!.toString(),
+    data.get("prompt").toString(),
     generateUniqueId()
   );
 
@@ -77,9 +77,9 @@ const handleSubmit = async (e: any) => {
 
   chatContainer.scrollTop = chatContainer.scrollHeight;
 
-  const messageDiv = document.getElementById(uniqueId)!;
+  const messageDiv = document.getElementById(uniqueId);
 
-  loader(messageDiv!);
+  loader(messageDiv);
 
   const response = await fetch("http://localhost:5001/api/chat", {
     method: "POST",
@@ -87,7 +87,7 @@ const handleSubmit = async (e: any) => {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      prompt: data.get("prompt")!.toString(),
+      prompt: data.get("prompt").toString(),
     }),
   });
 
