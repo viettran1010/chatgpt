@@ -81,7 +81,7 @@ const handleSubmit = async (e) => {
 
   loader(messageDiv);
 
-  const response = await fetch("http://localhost:5001/api/chat", {
+  const response = await fetch("https://chatgpt1.onrender.com/api/chat", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
